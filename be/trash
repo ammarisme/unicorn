@@ -1,0 +1,64 @@
+    while logic_element is not None:
+        logic = logic_element.data
+        logic['LOGICAL_ELEMENT']["logical_operator"] = logic['LOGICAL_ELEMENT']["logical_operator"].split("_?_?_")[0]
+        new_node = None
+        if logic['LOGICAL_ELEMENT']['type'] == 'connector':
+            if logic["LOGICAL_ELEMENT"]["logical_operator"] == "and":
+                new_node = TreeNode(" & ", logic_element)
+            elif logic["LOGICAL_ELEMENT"]["logical_operator"] == "or":
+                new_node = TreeNode(" | ", logic_element)
+
+            if logic_element.prev.data['LOGICAL_ELEMENT']['type'] =="logical_table":
+                my_root.add_child(new_node)
+            else:
+                current_node.add_child(
+                    new_node
+                )
+        elif logic['LOGICAL_ELEMENT']['type'] == "logical_table":
+            new_node  = TreeNode(logic["LOGICAL_ELEMENT"]["logical_operator"],logic_element)
+            my_root.add_child(new_node)
+        elif logic['LOGICAL_ELEMENT']['type'] == "attribute":
+            attribute_name = logic['LOGICAL_ELEMENT']["logical_operator"]
+            new_node = TreeNode(attribute_name,logic_element)
+            current_node.add_child(
+                new_node
+            )
+        elif logic['LOGICAL_ELEMENT']['type'] == "comparison":
+            if logic["LOGICAL_ELEMENT"]["logical_operator"] == "is":
+                new_node = TreeNode("="+logic["LOGICAL_ELEMENT"]["parameter"],logic_element)
+                current_node.add_child(
+                    new_node
+                )
+                expression += '='
+            elif logic["LOGICAL_ELEMENT"]["logical_operator"] == "is_not":
+                new_node = TreeNode("!="+logic["LOGICAL_ELEMENT"]["parameter"],logic_element)
+                current_node.add_child(
+                    new_node
+                )
+            elif logic["LOGICAL_ELEMENT"]["logical_operator"] == "is_greater_than":
+                new_node = TreeNode(">"+logic["LOGICAL_ELEMENT"]["parameter"],logic_element)
+                current_node.add_child(
+                    new_node
+                )
+            elif logic["LOGICAL_ELEMENT"]["logical_operator"] == "is_lesser_than":
+                new_node = TreeNode("<"+logic["LOGICAL_ELEMENT"]["parameter"],logic_element)
+                current_node.add_child(
+                    new_node
+                )
+                expression += '<'
+            elif logic["LOGICAL_ELEMENT"]["logical_operator"] == "and":
+                new_node = TreeNode("&"+logic["LOGICAL_ELEMENT"]["parameter"],logic_element)
+                current_node.add_child(
+                    new_node
+                )
+
+        current_node = new_node
+
+        logic_element = logic_element.prev
+    #sql_tree.print(root)
+    #sql = sql_tree.generate_sql(root)
+    # print(sql)
+    # #print(expression)
+    # return {
+    #     "result": 'Result : ' + sql
+    # }

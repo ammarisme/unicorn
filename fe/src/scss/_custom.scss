@@ -1,0 +1,144 @@
+// Here you can add other styles
+.font-config {
+  font-size: small;
+}
+
+.action-btn {
+  margin-top: 10px;
+  margin-right: 10px;
+  float: right;
+}
+
+.action-alert {
+  & > button {
+    background-color: #fadddd;
+    //margin-right: 15px;
+    //&:last-child {
+    //  margin-right: 0;
+    //}
+  }
+}
+
+.rule-box{
+  text-align:center;
+  font-size:medium;
+}
+
+.rule-box-card{
+  height:133px
+}
+.rule-box-card:hover{
+ & .card-body{
+   background-color : #d7d7d7;
+ }
+}
+
+.main-card{
+  margin-bottom : 20px;
+  .card-body{
+    h5{
+      font-size: small;
+    }
+  }
+}
+
+//Plus button
+.plus-button {
+  border: 2px solid lightgrey;
+  background-color: #fff;
+  font-size: 16px;
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: 999px;
+  position: relative;
+  float: left;
+  &:after,
+  &:before {
+    content: "";
+    display: block;
+    background-color: grey;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &:before {
+    height: 1em;
+    width: 0.2em;
+  }
+
+  &:after {
+    height: 0.2em;
+    width: 1em;
+  }
+}
+
+.plus-button--small {
+  font-size: 12px;
+}
+
+.plus-button--large {
+  font-size: 22px;
+}
+//
+
+.logic-selector{
+  max-width: 20%;
+  display: block;
+  float:left;
+  margin-left: 8px;
+}
+
+.logic-text{
+  display: block;
+  float: left;
+  padding:8px;
+  span{
+    text-align: center;
+  }
+}
+
+.dynamic-select-label{
+  margin-bottom: 8px;
+}
+
+
+.custom-panel{
+  padding: 5px;
+  .custom-panel-heading{
+    background-color: #efecec;
+    color: black;
+    text-align: center;
+    font-size: 14px;
+    padding: 5px;
+    font-weight: 600;
+  }
+  .custom-panel-body{
+    font-size: 14px;
+    padding:5px;
+  }
+}
+
+.custom-h3{
+  font-size : 14px;
+  font-weight: 500;
+}
+
+.rule-processing-history{
+  margin-top: 6px;
+  .rule{
+    padding:4px;
+    margin-bottom : 5px;
+    .rule-name{
+      padding:4px;
+    }
+  }
+  .odd{
+    background-color: #f3f3f3;
+  }
+}
+
+.data-changed{
+  background-color : aliceblue;
+}

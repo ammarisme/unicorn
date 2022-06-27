@@ -1,0 +1,9 @@
+Flask~=1.1.1
+Flask-SQLAlchemy
+Authlib==0.14.3
+Flask_cors
+pptree~=3.1
+mongokit~=0.9.1.1
+numpy~=1.18.1
+pymongo~=4.1.1
+werkzeug~=1.0.0
