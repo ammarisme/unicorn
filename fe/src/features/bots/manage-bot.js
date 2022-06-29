@@ -13,7 +13,7 @@ import {
 } from "@coreui/react/dist/index";
 import {connect} from "react-redux/es/index";
 import PropTypes from "prop-types";
-import showViewActionCreator from "../../shared/shared-functions";
+import {showViewActionCreator} from "../../shared/shared-functions";
 import DynamicSelect from "../../shared/components/DynamicSelect";
 ;
 

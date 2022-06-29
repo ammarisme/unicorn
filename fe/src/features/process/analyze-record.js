@@ -1,30 +1,25 @@
-import React, {useState} from 'react'
+import React from 'react'
 import CIcon from '@coreui/icons-react'
-import { cilArrowRight, cilMediaStop } from '@coreui/icons';
+import {cilArrowRight} from '@coreui/icons';
 
 
 import {
+  CCol,
   CModal,
   CModalBody,
   CModalHeader,
-  CCol,
-  CContainer,
   CModalTitle,
-  CNav,
-  CNavItem,
-  CNavLink,
   CRow,
-  CTabContent,
-  CTabPane,
+  CTable,
+  CTableBody,
+  CTableDataCell,
   CTableHead,
-  CTableRow,
   CTableHeaderCell,
-  CTableBody, CTableDataCell, CTable
+  CTableRow
 } from "@coreui/react/dist/index";
 import {connect} from "react-redux/es/index";
 import PropTypes from "prop-types";
-import showViewActionCreator from "../../shared/shared-functions";
-import DynamicSelect from "../../shared/components/DynamicSelect";
+import {showViewActionCreator} from "../../shared/shared-functions";
 import {CBadge} from "@coreui/react";
 
 class AnalyzeRecord extends React.Component {

@@ -1,18 +1,22 @@
 import React from 'react'
 import {connect} from "react-redux/es/index";
 import {
-  CAccordion,
-  CAccordionBody,
-  CAccordionHeader,
-  CAccordionItem, CBadge, CButton, CCard, CCardBody,
+  CBadge,
+  CButton,
+  CCard,
+  CCardBody,
   CCol,
-  CContainer, CFormCheck,
   CFormInput,
-  CRow, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow
+  CRow,
+  CTable,
+  CTableBody,
+  CTableDataCell,
+  CTableHead,
+  CTableHeaderCell,
+  CTableRow
 } from "@coreui/react";
-import AsyncSelect from 'react-select/async/dist/react-select.cjs.js';
 import DynamicSelect from "../../shared/components/DynamicSelect";
-import showViewActionCreator from "../../shared/shared-functions";
+import {showViewActionCreator} from "../../shared/shared-functions";
 import PropTypes from "prop-types";
 import AnalyzeRecord from "./analyze-record";
 

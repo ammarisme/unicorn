@@ -1,14 +1,20 @@
 import React from 'react'
 import {connect} from "react-redux/es/index";
 import {
-  CAccordion,
-  CAccordionBody,
-  CAccordionHeader,
-  CAccordionItem, CButton, CCard, CCardBody,
+  CButton,
+  CCard,
+  CCardBody,
   CCol,
-  CContainer, CFormCheck,
+  CContainer,
+  CFormCheck,
   CFormInput,
-  CRow, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow
+  CRow,
+  CTable,
+  CTableBody,
+  CTableDataCell,
+  CTableHead,
+  CTableHeaderCell,
+  CTableRow
 } from "@coreui/react";
 import AsyncSelect from 'react-select/async/dist/react-select.cjs.js';
 

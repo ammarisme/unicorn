@@ -37,16 +37,24 @@ class DefineSchema extends React.Component {
         <CRow>
           <CCol md={8}>
             <DynamicSelect url={"http://localhost:5000/api/schema"} queryAttributes={[{"schema" : "ultimate"}]}
-                           label={"Select Schema"}></DynamicSelect>
+                           label={"Select Entity"}></DynamicSelect>
           </CCol>
         </CRow>
+        <CContainer fluid style={{"marginTop": "10px"}}>
+          <span style={{
+            "marginRight" : "10px"
+          }}>Or</span>
+          <span>
+          <CButton color="primary" size="sm">Create a new Entity</CButton>
+          </span>
+        </CContainer>
         <CRow>
           <CContainer fluid style={{"marginTop": "10px"}}>
             <CCol md={4}>
               <CFormInput
                 type="text"
                 id="exampleFormControlInput1"
-                label="Schema Name"
+                label="Entity Name"
                 placeholder=""
                 text=".."
                 onChange={(event) => {
@@ -58,17 +66,6 @@ class DefineSchema extends React.Component {
                 aria-describedby="exampleFormControlInputHelpInline"
               />
             </CCol>
-            <CCol md={8}>
-              <label>Description</label>
-              <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"
-  onChange={((event) => {
-    this.setState({
-      ...this.state,
-      schema_description: event.target.value
-    })
-  })}
-  />
-            </CCol>
           </CContainer>
         </CRow>
         <CRow>
@@ -77,9 +74,9 @@ class DefineSchema extends React.Component {
               <CTable bordered borderColor="primary">
                 <CTableHead>
                   <CTableRow>
-                    <CTableHeaderCell scope="col">Field Name</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Attribute</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Type</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Default</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Default value</CTableHeaderCell>
                     <CTableHeaderCell scope="col"></CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
@@ -164,12 +161,24 @@ class DefineSchema extends React.Component {
                 </CTableBody>
               </CTable>
             </CCol>
+            <CCol md={8}>
+              <label>Description</label>
+              <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"
+                        onChange={((event) => {
+                          this.setState({
+                            ...this.state,
+                            schema_description: event.target.value
+                          })
+                        })}
+              />
+            </CCol>
             <CButton color="primary" size="sm"
                      onClick={() => {
                        this.saveSchema()
                      }}
             >Save</CButton>
           </CContainer>
+
         </CRow>
       </>
     )

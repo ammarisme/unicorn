@@ -1,6 +1,8 @@
-function showViewActionCreator(modalName, visible){
-  console.log(visible)
+export function showViewActionCreator(modalName, visible){
+
   return async function(dispatch, getState){
+    console.log('showViewActionCreator')
+
     dispatch(
       {
         type: "VIEW_STATE_UPDATE",
@@ -11,5 +13,14 @@ function showViewActionCreator(modalName, visible){
   }
 }
 
-
-export default showViewActionCreator
+export function switchToProViewActionCreator(proView){
+  return async function(dispatch, getState){
+    dispatch(
+      {
+        type: "VIEW_STATE_UPDATE",
+        view_name : "PRO_VIEW",
+        visible : proView,
+        view_state_data : null
+      })
+  }
+}

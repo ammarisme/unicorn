@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from "react-redux/es/index";
 import PropTypes from "prop-types";
 import {CCard, CCardBody,CCardTitle, CCol, CRow} from "@coreui/react/dist/index";
-import showViewActionCreator from '../../shared/shared-functions'
+import {showViewActionCreator} from '../../shared/shared-functions'
 import ManageRule from "./manage-bot";
 import {CButton, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow} from "@coreui/react";
 

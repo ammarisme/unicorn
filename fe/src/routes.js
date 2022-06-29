@@ -7,7 +7,7 @@ const HL7Summary = React.lazy(() => import('./features/reports/Hl7SummaryReport'
 const UploadData= React.lazy(() => import('./features/process/upload-data'))
 const ExploreResults= React.lazy(() => import('./features/process/explore-results'))
 const MyBotsView= React.lazy(() => import('./features/bots/my-bots-view'))
-const MyRules= React.lazy(() => import('./features/rules/my-rules'))
+const MyProcesses= React.lazy(() => import('./features/configure/list-processes'))
 const MyConditions= React.lazy(() => import('./features/rules/my-conditions'))
 const MyActions= React.lazy(() => import('./features/rules/my-actions'))
 
@@ -39,9 +39,9 @@ const routes = [
   { path: '/claims/claim-review/received', name: 'claim-review-received', element: RecievedClaims, exact: true },
 
   // Rules Engine
-  { path: '/rules/my-rules', name: 'my-rules', element: MyRules, exact: true },
-  { path: '/rules/my-conditions', name: 'my-conditions', element: MyConditions, exact: true },
-  { path: '/rules/my-actions', name: 'my-actions', element: MyActions, exact: true },
+  { path: '/configure/my-processes', name: 'my-processes', element: MyProcesses, exact: true },
+  { path: '/configure/my-conditions', name: 'my-conditions', element: MyConditions, exact: true },
+  { path: '/configure/my-actions', name: 'my-actions', element: MyActions, exact: true },
 
   // Process
   { path: '/process/upload-data', name: 'upload-data', element: UploadData, exact: true },

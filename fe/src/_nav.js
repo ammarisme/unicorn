@@ -15,16 +15,36 @@ import {
 import {CNavGroup, CNavItem, CNavTitle} from '@coreui/react'
 
 const _nav = [
-  // {
-  //   component: CNavItem,
-  //   name: 'Dashboard',
-  //   to: '/dashboard',
-  //   icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-  //   badge: {
-  //     color: 'info',
-  //     text: 'NEW',
-  //   },
-  // },
+  {
+    component: CNavGroup,
+    name: 'Configure',
+    to: '/configure/',
+    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon"/>,
+    items: [
+      {
+        component: CNavItem,
+        name: 'My Processes',
+        to: '/configure/my-processes',
+      },
+      {
+        component: CNavItem,
+        name: 'Actions',
+        to: '/configure/my-actions',
+      },
+      {
+        component: CNavItem,
+        name: 'Conditions',
+        to: '/configure/my-conditions',
+      }
+    ],
+  },
+  {
+    component: CNavItem,
+    name: 'Bots',
+    to: '/bots/my-bots',
+    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon"/>,
+
+  },
   {
     component: CNavGroup,
     name: 'Process',
@@ -42,36 +62,6 @@ const _nav = [
         to: '/process/explore-results',
       }
     ],
-  },
-  {
-    component: CNavGroup,
-    name: 'Rules',
-    to: '/rules/',
-    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon"/>,
-    items: [
-      {
-        component: CNavItem,
-        name: 'My Rules',
-        to: '/rules/my-rules',
-      },
-      {
-        component: CNavItem,
-        name: 'My Actions',
-        to: '/rules/my-actions',
-      },
-      {
-        component: CNavItem,
-        name: 'My Conditions',
-        to: '/rules/my-conditions',
-      }
-    ],
-  },
-  {
-    component: CNavItem,
-    name: 'Bots',
-    to: '/bots/my-bots',
-    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon"/>,
-
   },
 ]
 

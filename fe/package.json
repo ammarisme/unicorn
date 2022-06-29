@@ -49,6 +49,7 @@
     "react-app-polyfill": "^3.0.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.1.0",
+    "react-flow-renderer": "^10.3.8",
     "react-icons": "^4.4.0",
     "react-multi-select-component": "^4.2.9",
     "react-redux": "^8.0.2",

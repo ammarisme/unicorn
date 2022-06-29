@@ -1,22 +1,19 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {
-  CButton,
-  CCard,
-  CCardBody, CCardHeader,
-  CCol, CDropdown, CDropdownItem, CFormInput, CFormSelect, CFormSwitch,
+  CCol,
   CListGroup,
   CListGroupItem,
   CModal,
   CModalBody,
   CModalHeader,
-  CModalTitle, CNav, CNavItem, CNavLink, CRow, CTabContent, CTabPane
+  CModalTitle,
+  CRow
 } from "@coreui/react/dist/index";
 import {connect} from "react-redux/es/index";
 import PropTypes from "prop-types";
-import CreateCondition from "./CreateCondition";
-import showViewActionCreator from "../../shared/shared-functions";
+import {showViewActionCreator} from "../../shared/shared-functions";
 import DefineSchema from "./define-schema"
-import Conditions from "./conditions";
+import Conditions from "../configure/processes/configure-operations";
 import Actions from "./actions";
 import Finish from "./finish";
 

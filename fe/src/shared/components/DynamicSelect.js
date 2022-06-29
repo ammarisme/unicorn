@@ -23,14 +23,18 @@ class DynamicSelect extends React.Component {
   }
 
   render() {
-    if (this.props.url == undefined){
+    if (this.props.url == undefined) {
       return <></>
     }
     return (
       <>
-        {
-          this.props.label && <label className={"dynamic-select-label"}>{this.props.label}</label>
-        }
+        <div className={"custom-input"}>
+          <div className={"input-label"}>
+            {
+              this.props.label && <label className={"dynamic-select-label"}>{this.props.label}</label>
+            }
+          </div>
+          <div className={"input-box"}>
             <AsyncSelect
               data={this.props}
               cacheOptions
@@ -40,6 +44,8 @@ class DynamicSelect extends React.Component {
               onInputChange={this.handleInputChange}
               onChange={this.logicalElementSelected}
             />
+          </div>
+        </div>
       </>
     )
   }
@@ -49,16 +55,16 @@ class DynamicSelect extends React.Component {
     // callback: (options: ColourOption[]) => void
     callback: (options) => void,
   ) => {
-    let url = this.props.url+"?"
-    if (this.props.queryAttributes != undefined){
+    let url = this.props.url + "?"
+    if (this.props.queryAttributes != undefined) {
       this.props.queryAttributes.forEach(function (item, index) {
         const key = Object.getOwnPropertyNames(item)[0]
-        const value= item[key]
-        url += key+"="+value+"&"
+        const value = item[key]
+        url += key + "=" + value + "&"
       });
     }
 
-    fetch(url+"query="+inputValue, {
+    fetch(url + "query=" + inputValue, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -74,10 +80,10 @@ class DynamicSelect extends React.Component {
 }
 
 DynamicSelect.propTypes = {
-  label : PropTypes.string,
+  label: PropTypes.string,
   url: PropTypes.string,
-  isMulti : PropTypes.bool,
-  queryAttributes : PropTypes.array
+  isMulti: PropTypes.bool,
+  queryAttributes: PropTypes.array
 }
 const mapStateToProps = (state) => {
   return {}
