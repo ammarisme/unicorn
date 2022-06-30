@@ -38,13 +38,13 @@ class ManageAction extends React.Component {
       return <></>
     }
     return (
-      <CModal size="lg" visible={true} className={"font-config"} onClose={() => {
+      <CModal alignment="center" size="md"  visible={true} className={"font-config"} onClose={() => {
         this.props.showView("MANAGE_ACTION", false);
       }}>
-        <CModalHeader>
+        <CModalHeader className={"modal-type-2"}>
           <CModalTitle>New Action</CModalTitle>
         </CModalHeader>
-        <CModalBody>
+        <CModalBody className={"modal-type-2"}>
           <CContainer fuild style={{"marginTop": "10px"}}>
             <CCol md={4}>
               <CFormSelect

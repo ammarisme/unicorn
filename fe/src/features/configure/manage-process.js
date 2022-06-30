@@ -31,7 +31,7 @@ class ManageProcess extends React.Component {
   render() {
   console.log('pro view', this.props.view_state.PRO_VIEW)
     return (
-      <CModal size="xl" fullscreen={this.props.view_state.PRO_VIEW} visible={true} className={"font-config"} onClose={() => {
+      <CModal alignment="center" size="xl" fullscreen={this.props.view_state.PRO_VIEW} visible={true} className={"font-config"} onClose={() => {
         this.props.showView("CREATE_RULE", false);
       }}>
         <CModalHeader>

@@ -66,34 +66,3 @@ const _nav = [
 ]
 
 export default _nav
-
-// {
-//   component: CNavTitle,
-//     name: 'Tools',
-// },
-// {
-//   component: CNavGroup,
-//     name: 'Tools',
-//   to: '/tools',
-//   icon: <CIcon icon={cilPuzzle} customClassName="nav-icon"/>,
-//   items: [
-//   {
-//     component: CNavItem,
-//     name: 'HL7 test tool',
-//     to: '/tools/hl7-test-tool',
-//   },
-// ],
-// },
-// {
-//   component: CNavGroup,
-//     name: 'Tools',
-//   to: '/tools',
-//   icon: <CIcon icon={cilPuzzle} customClassName="nav-icon"/>,
-//   items: [
-//   {
-//     component: CNavItem,
-//     name: 'HL7 test tool',
-//     to: '/tools/hl7-test-tool',
-//   },
-// ],
-// },

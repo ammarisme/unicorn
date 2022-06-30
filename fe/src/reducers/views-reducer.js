@@ -113,12 +113,20 @@ const viewReducer = (view_name, state, visible, view_state_data) => {
       }
       return state;
     case "PRO_VIEW":
-      console.log(visible)
       state = {
         ...state,
         VIEW_STATE : {
           ...state.VIEW_STATE,
           PRO_VIEW : visible
+        }
+      }
+      return state;
+    case "MANAGE_ACTION":
+      state = {
+        ...state,
+        VIEW_STATE : {
+          ...state.VIEW_STATE,
+          MANAGE_ACTION : visible
         }
       }
       return state;

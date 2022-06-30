@@ -16,7 +16,6 @@ class ConfigureOperations extends React.Component {
   componentDidMount() {
     this.setState({
       operations: [
-        {id: 0, "actondition_type": "condition", "description": "if x = 1"},
       ],
       activeKey: "action",
       action_type: "update",
@@ -69,16 +68,31 @@ class ConfigureOperations extends React.Component {
                                   })
                                 }}>Add new <FaPlusCircle/></CBadge>
                         </span>
-
                       </div>
                     </div>
                   }
                 </>)
               })
             }
-            <CContainer>
-              <CFormSwitch label="Digram View" id="formSwitchCheckDefault" disabled/>
-            </CContainer>
+
+            {  (this.state.operations.length==0) &&
+            <div className={"lead-to-next"}>
+              <div >
+                        <span className={"badge-button div-center"}>
+                        <CBadge color="primary" className={"hand-cursor"}
+                                onClick={(event) => {
+                                  event.preventDefault()
+                                  let operations = this.state.operations
+                                  operations.push({})
+                                  this.setState({
+                                    operations : operations
+                                  })
+                                }}>Add new <FaPlusCircle/></CBadge>
+                        </span>
+
+              </div>
+            </div>
+            }
           </CCol>
           {
             this.props.view_state.PRO_VIEW && <CCol md={6}>

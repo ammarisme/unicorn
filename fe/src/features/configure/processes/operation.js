@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from "react-redux/es/index";
 import PropTypes from "prop-types";
 import {
-  CButton,
   CCol,
   CContainer,
   CFormInput,
@@ -17,31 +16,8 @@ import DynamicSelect from "../../../shared/components/DynamicSelect";
 import {CBadge, CRow} from "@coreui/react";
 import {FaArrowCircleRight, FaBolt, FaSave, FaTrash} from "react-icons/fa";
 import {FaPlusCircle, FaPenSquare} from "react-icons/fa";
-
-const loadOptions = (
-  inputValue: string,
-  // callback: (options: ColourOption[]) => void
-  callback: (options) => void,
-) => {
-  const state = JSON.parse(localStorage.getItem('state'))['state']
-  const my_queries = state['CREATE_RULE_QUERY_TREE']
-  fetch("http://localhost:5000/api/rules-engine/get-suggesstions", {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify({
-      // your expected POST request payload goes here
-      latest_input_string: inputValue,
-      query_tree: my_queries
-    })
-  })
-    .then(res => res.json())
-    .then(result => {
-      callback(result.suggestions)
-    })
-};
+import {showViewActionCreator} from "../../../shared/shared-functions";
+import ManageAction from "../actions/manage-action";
 
 class Operation extends React.Component {
   constructor() {
@@ -58,18 +34,28 @@ class Operation extends React.Component {
     if (this.state == null) {
       return <></>
     }
-
     return (
       <>
-        <CContainer fluid className={"operation-box"}>
+        {
+          this.props.view_state.MANAGE_ACTION  && <ManageAction></ManageAction>
+        }
+          <CContainer fluid className={"operation-box"}>
           <div className={"operations-head"}>
             <div className={"label"}>Step {1}</div>
-            <div className={"input-container"}><CFormInput type={"text"}></CFormInput></div>
+            <div className={"input-container"}>
+              <CFormInput type={"text"}
+                          onChange={(event) => {
+                            this.setState({
+                              ...this.state,
+                              operation_name: event.target.value
+                            })
+                          }}
+              ></CFormInput></div>
           </div>
           <div className={"operation-content"}>
             <CCol md={12}>
-              <DynamicSelect label={"Pre-requisite: "} isMulti={true}
-                             url={"http://localhost:5000/api/flags"}></DynamicSelect>
+              <DynamicSelect label={"Pre-requisite: "} isMulti={true} queryAttributes={[{"process_id": "1"}]}
+                             url={"http://localhost:5000/api/processes/get-pre-requisites"}></DynamicSelect>
             </CCol>
             <CCol md={12} className={"opearation-row"}>
               <p><a href="#">
@@ -130,7 +116,7 @@ class Operation extends React.Component {
                           <CTableDataCell>{action.description}</CTableDataCell>
                           <CTableDataCell>
                             <span className={"badge-button"}><CBadge color="dark">Edit <FaPenSquare/></CBadge></span>
-                            </CTableDataCell>
+                          </CTableDataCell>
                         </CTableRow>
                         </>
                       })
@@ -138,51 +124,52 @@ class Operation extends React.Component {
 
                     <CTableRow>
                       <CTableDataCell colSpan={2}>
-<span className={"badge-button float-left"}
-onClick={() => {
-  let actions = this.state.actions
-  actions.push({description: "sample"})
-  this.setState({
-    ...this.state,
-    actions : actions
-  })
-}}
->
-  <CBadge color="dark">Add an Action <FaPlusCircle/></CBadge></span>
+                        <span className={"badge-button float-left"}
+                              onClick={() => {
+                                this.props.showView("MANAGE_ACTION", true)
+                              }}
+                        >
+                          <CBadge color="dark">Add an Action <FaPlusCircle/></CBadge></span>
                       </CTableDataCell>
                     </CTableRow>
                   </CTableBody>
                 </CTable>
 
               </CCol>
-              }
-              </div>
-              <div className={"operation-footer"}>
+            }
+          </div>
+          <div className={"operation-footer"}>
               <span className={"badge-button float-right"}>
               <CBadge color="primary">Save <FaSave/></CBadge>
               </span>
-              <span className={"badge-button float-right"}>
+            <span className={"badge-button float-right"}>
               <CBadge color="danger"> Delete <FaTrash/></CBadge>
               </span>
 
 
-              </div>
+          </div>
 
-              </CContainer>
-              </>
-              )
-              }
-              }
+        </CContainer>
+      </>
+    )
+  }
+}
 
 
-              Operation.propTypes = {
-              key: PropTypes.object,
-              }
-              const mapStateToProps = (state) => {
-              return {}
-              }
-              const mapDispatchToProps = (dispatch) => {
-              return {}
-              }
+Operation.propTypes = {
+  key: PropTypes.object,
+  showView : PropTypes.func,
+  view_state: PropTypes.object
+}
+const mapStateToProps = (state) => {
+  return {
+    view_state : state.VIEW_STATE
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showView : (modalName, visible) => dispatch(showViewActionCreator(modalName, visible)),
+  }
+}
 
-              export default connect(mapStateToProps, mapDispatchToProps)(Operation)
+export default connect(mapStateToProps, mapDispatchToProps)(Operation)
