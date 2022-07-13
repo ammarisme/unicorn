@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from "react-redux/es/index";
 import {CContainer, CFormInput} from "@coreui/react";
 
-class Finish extends React.Component {
+class FinishComponent extends React.Component {
   constructor() {
     super();
   }
@@ -36,7 +36,7 @@ class Finish extends React.Component {
 }
 
 
-Finish.propTypes = {
+FinishComponent.propTypes = {
 }
 const mapStateToProps = (state) => {
   return {
@@ -47,4 +47,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Finish)
+export default connect(mapStateToProps, mapDispatchToProps)(FinishComponent)

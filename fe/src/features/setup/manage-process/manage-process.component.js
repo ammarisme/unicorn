@@ -11,12 +11,12 @@ import {
 } from "@coreui/react/dist/index";
 import {connect} from "react-redux/es/index";
 import PropTypes from "prop-types";
-import DefineSchema from "../rules/define-schema"
-import ConfigureOperations from "./processes/configure-operations";
+import DefineSchemaComponent from "../define-schema/define-schema.component"
+import OperationsListComponent from "../operations-list/operations-list.component";
 import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
-import Finish from "../rules/finish";
+import FinishComponent from "../finish/finish.component";
 
-class ManageProcess extends React.Component {
+class ManageProcessComponent extends React.Component {
   constructor() {
     super();
   }
@@ -70,15 +70,15 @@ class ManageProcess extends React.Component {
 
               {
                 this.props.view_state.DEFINE_SCHEMA &&
-                this.props.view_state.DEFINE_SCHEMA.VISIBLE && <DefineSchema></DefineSchema>
+                this.props.view_state.DEFINE_SCHEMA.VISIBLE && <DefineSchemaComponent></DefineSchemaComponent>
               }
               {
                 this.props.view_state.CONDITIONS &&
-                this.props.view_state.CONDITIONS.VISIBLE && <ConfigureOperations></ConfigureOperations>
+                this.props.view_state.CONDITIONS.VISIBLE && <OperationsListComponent></OperationsListComponent>
               }
               {
                 this.props.view_state.FINISH&&
-                this.props.view_state.FINISH.VISIBLE && <Finish></Finish>
+                this.props.view_state.FINISH.VISIBLE && <FinishComponent></FinishComponent>
               }
             </CCol>
           </CRow>
@@ -121,7 +121,7 @@ function loadCreateRuleParamsActionCreator() {
   }
 }
 
-ManageProcess.propTypes = {
+ManageProcessComponent.propTypes = {
   showView: PropTypes.func,
   activeKey: PropTypes.number,
   setActiveKey: PropTypes.func,
@@ -149,4 +149,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageProcess)
+export default connect(mapStateToProps, mapDispatchToProps)(ManageProcessComponent)

@@ -13,11 +13,11 @@ import {
   CTableDataCell,
   CTableHeaderCell,
   CTableRow
-} from "@coreui/react/dist/index";
+} from "@coreui/react/dist/index"; 
 import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
-import ManageProcess from "./manage-process";
+import ManageProcessComponent from "../manage-process/manage-process.component";
 
-class ListProcesses extends React.Component {
+class ListProcessesComponent extends React.Component {
   constructor(props) {
     super();
 
@@ -37,7 +37,7 @@ class ListProcesses extends React.Component {
         {
           (
             this.props.view_state.CREATE_RULE &&
-            this.props.view_state.CREATE_RULE.VISIBLE) && <ManageProcess></ManageProcess>
+            this.props.view_state.CREATE_RULE.VISIBLE) && <ManageProcessComponent></ManageProcessComponent>
         }
         {/*<ManageAction></ManageAction>*/}
           <CCard className="mb-12 main-card font-config">
@@ -114,7 +114,7 @@ function showCollectionSummaryActionCreator(){
   }
 }
 
-ListProcesses.propTypes = {
+ListProcessesComponent.propTypes = {
   loadRuleBoxes: PropTypes.func,
   loadMyCollection: PropTypes.func,
   rule_boxes: PropTypes.array,
@@ -141,4 +141,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListProcesses);
+export default connect(mapStateToProps, mapDispatchToProps)(ListProcessesComponent);

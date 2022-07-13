@@ -62,7 +62,7 @@ OverviewFlow.propTypes = {
   edges: PropTypes.array
 }
 
-class ProcessDiagram extends React.Component {
+class ProcessDiagramComponent extends React.Component {
   constructor() {
     super();
   }
@@ -87,7 +87,7 @@ class ProcessDiagram extends React.Component {
 }
 
 
-ProcessDiagram.propTypes = {
+ProcessDiagramComponent.propTypes = {
   showView: PropTypes.func,
   activeKey: PropTypes.number,
   view_state : PropTypes.object,
@@ -110,4 +110,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProcessDiagram)
+export default connect(mapStateToProps, mapDispatchToProps)(ProcessDiagramComponent)

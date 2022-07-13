@@ -12,14 +12,14 @@ import {
   CTableHeaderCell,
   CTableRow
 } from "@coreui/react/dist/index";
-import {DynamicSelect} from 'src/common/components/DynamicSelect'
+import {DynamicSelect} from 'src/components/custom_components/DynamicSelect'
 import {CBadge, CRow} from "@coreui/react";
 import {FaArrowCircleRight, FaBolt, FaSave, FaTrash} from "react-icons/fa";
 import {FaPlusCircle, FaPenSquare} from "react-icons/fa";
 import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
-import ManageAction from "../actions/manage-action";
+import ManageAction from "../manage-action/manage-action";
 
-class Operation extends React.Component {
+class OperationComponent extends React.Component {
   constructor() {
     super();
   }
@@ -197,7 +197,7 @@ class Operation extends React.Component {
 }
 
 
-Operation.propTypes = {
+OperationComponent.propTypes = {
   key: PropTypes.object,
   showView: PropTypes.func,
   saveOperation: PropTypes.func,
@@ -218,4 +218,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Operation)
+export default connect(mapStateToProps, mapDispatchToProps)(OperationComponent)

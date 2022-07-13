@@ -1,5 +1,5 @@
 import React from "react";
-import {nodes, edges} from "../../features/configure/processes/initial-elements"
+import {nodes, edges} from "../../features/setup/process-diagram/initial-elements"
 import { ActionCreator } from "../action-creator";
 
 export class ViewActionCreator extends ActionCreator {

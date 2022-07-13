@@ -15,7 +15,7 @@ import {
   CTableHeaderCell,
   CTableRow
 } from "@coreui/react";
-import {DynamicSelect} from 'src/common/components/DynamicSelect'
+import {DynamicSelect} from 'src/components/custom_components/DynamicSelect'
 import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
 import PropTypes from "prop-types";
 import AnalyzeRecord from "./analyze-record";

@@ -1,15 +1,9 @@
 import React from 'react'
 import EmptyView from "./template_code/views/app-views/EmptyView";
-import ClaimReview from "./features/claim-review/ClaimReview";
-import RecievedClaims from "./features/claim-review/Recieved";
 const Login = React.lazy(() => import('./features/login/Login'))
-const HL7Summary = React.lazy(() => import('./features/reports/Hl7SummaryReport'))
 const UploadData= React.lazy(() => import('./features/process/upload-data'))
 const ExploreResults= React.lazy(() => import('./features/process/explore-results'))
-const MyBotsView= React.lazy(() => import('./features/bots/my-bots-view'))
-const MyProcesses= React.lazy(() => import('./features/configure/list-processes'))
-const MyConditions= React.lazy(() => import('./features/rules/my-conditions'))
-const MyActions= React.lazy(() => import('./features/rules/my-actions'))
+const MyProcesses= React.lazy(() => import('./features/setup/list-processes/list-processes.component'))
 
 
 const routes = [
@@ -32,23 +26,14 @@ const routes = [
   { path: '/analytics/claims', name: 'rejection-rules', element: EmptyView },
   { path: '/analytics/payments', name: 'templates', element: EmptyView },
   { path: '/analytics/denials', name: 'my-team', element: EmptyView },
-  { path: '/reports/received-claims-summary', name: 'received-claims-summary', element: HL7Summary, exact: true },
 
-  // Claim Review
-  { path: '/claims/claim-review/:id', name: 'claim-review', element: ClaimReview, exact: true },
-  { path: '/claims/claim-review/received', name: 'claim-review-received', element: RecievedClaims, exact: true },
-
-  // Rules Engine
+  // Setup
   { path: '/configure/my-processes', name: 'my-processes', element: MyProcesses, exact: true },
-  { path: '/configure/my-conditions', name: 'my-conditions', element: MyConditions, exact: true },
-  { path: '/configure/my-actions', name: 'my-actions', element: MyActions, exact: true },
 
   // Process
   { path: '/process/upload-data', name: 'upload-data', element: UploadData, exact: true },
   { path: '/process/explore-results', name: 'explore-results', element: ExploreResults, exact: true },
 
-  // Bots
-  { path: '/bots/my-bots', name: 'my-bots', element: MyBotsView, exact: true },
 
   { path: '/login', name: 'login', element: Login },
 ]

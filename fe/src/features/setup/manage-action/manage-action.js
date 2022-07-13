@@ -18,7 +18,7 @@ import {
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
-import {DynamicSelect} from 'src/common/components/DynamicSelect'
+import {DynamicSelect} from 'src/components/custom_components/DynamicSelect'
 import {FaMinusCircle} from "react-icons/fa";
 
 class ManageAction extends React.Component {

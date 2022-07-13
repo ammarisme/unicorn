@@ -2,13 +2,13 @@ import {FaArrowDown} from "react-icons/fa";
 import React from 'react'
 import {connect} from "react-redux";
 import {CBadge, CButton, CCol, CContainer, CFormSwitch, CRow} from "@coreui/react/dist/index";
-import Operation from "./operation";
-import ProcessDiagram from "./process-diagram";
+import OperationComponent from "../operation/operation.component";
+import ProcessDiagramComponent from "../process-diagram/process-diagram.component";
 import PropTypes from "prop-types";
 import {FaPlusCircle} from "react-icons/fa";
 
 
-class ConfigureOperations extends React.Component {
+class OperationsListComponent extends React.Component {
   constructor() {
     super();
   }
@@ -41,7 +41,7 @@ class ConfigureOperations extends React.Component {
           }>
             {
               this.state.operations.map((rank, i, operation) => {
-                return (<> <Operation key={operation}/>
+                return (<> <OperationComponent key={operation}/>
                   {
                     (i + 1 != this.state.operations.length) &&
                     <div className={"lead-to-next"}>
@@ -96,7 +96,7 @@ class ConfigureOperations extends React.Component {
           </CCol>
           {
             this.props.view_state.PRO_VIEW && <CCol md={6}>
-              <ProcessDiagram></ProcessDiagram>
+              <ProcessDiagramComponent></ProcessDiagramComponent>
             </CCol>
           }
 
@@ -107,7 +107,7 @@ class ConfigureOperations extends React.Component {
 }
 
 
-ConfigureOperations.propTypes = {
+OperationsListComponent.propTypes = {
   switchToProView: PropTypes.func,
   view_state: PropTypes.object
 }
@@ -121,4 +121,4 @@ const mapDispatchToProps = (dispatch) => {
   return {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConfigureOperations)
+export default connect(mapStateToProps, mapDispatchToProps)(OperationsListComponent)

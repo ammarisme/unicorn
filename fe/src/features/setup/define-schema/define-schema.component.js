@@ -7,11 +7,11 @@ import {
   CFormInput, CFormSelect,
   CRow, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow
 } from "@coreui/react";
-import {DynamicSelect} from 'src/common/components/DynamicSelect'
+import {DynamicSelect} from 'src/components/custom_components/DynamicSelect'
 import PropTypes from "prop-types";
 import {FaMinusCircle} from "react-icons/fa";
 
-class DefineSchema extends React.Component {
+class DefineSchemaComponent extends React.Component {
 
 
   constructor() {
@@ -227,7 +227,7 @@ class DefineSchema extends React.Component {
 }
 
 
-DefineSchema.propTypes = {
+DefineSchemaComponent.propTypes = {
   schema: PropTypes.any
 }
 const mapStateToProps = (state) => {
@@ -237,4 +237,4 @@ const mapDispatchToProps = (dispatch) => {
   return {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DefineSchema)
+export default connect(mapStateToProps, mapDispatchToProps)(DefineSchemaComponent)
