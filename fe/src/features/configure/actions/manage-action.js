@@ -17,8 +17,8 @@ import {
 } from "@coreui/react/dist/index";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {showViewActionCreator} from "../../../shared/shared-functions";
-import DynamicSelect from "../../../shared/components/DynamicSelect";
+import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
+import {DynamicSelect} from 'src/common/components/DynamicSelect'
 import {FaMinusCircle} from "react-icons/fa";
 
 class ManageAction extends React.Component {
@@ -177,7 +177,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    showView : (modalName, visible) => dispatch(showViewActionCreator(modalName, visible))
+    showView : (modalName, visible) => dispatch(ViewActionCreator.showViewActionCreator(modalName, visible))
   }
 }
 

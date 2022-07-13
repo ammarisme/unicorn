@@ -7,7 +7,7 @@ import {
   CFormInput, CFormSelect,
   CRow, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow
 } from "@coreui/react";
-import DynamicSelect from "../../shared/components/DynamicSelect";
+import {DynamicSelect} from 'src/common/components/DynamicSelect'
 import PropTypes from "prop-types";
 import {FaMinusCircle} from "react-icons/fa";
 

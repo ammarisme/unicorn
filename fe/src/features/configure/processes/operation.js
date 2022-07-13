@@ -12,11 +12,11 @@ import {
   CTableHeaderCell,
   CTableRow
 } from "@coreui/react/dist/index";
-import DynamicSelect from "../../../shared/components/DynamicSelect";
+import {DynamicSelect} from 'src/common/components/DynamicSelect'
 import {CBadge, CRow} from "@coreui/react";
 import {FaArrowCircleRight, FaBolt, FaSave, FaTrash} from "react-icons/fa";
 import {FaPlusCircle, FaPenSquare} from "react-icons/fa";
-import {saveOperationActionCreator, showViewActionCreator} from "../../../shared/shared-functions";
+import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
 import ManageAction from "../actions/manage-action";
 
 class Operation extends React.Component {
@@ -213,8 +213,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showView: (modalName, visible) => dispatch(showViewActionCreator(modalName, visible)),
-    saveOperation: (operation_data) => dispatch(saveOperationActionCreator(operation_data)),
+    showView: (modalName, visible) => dispatch(ViewActionCreator.showViewActionCreator(modalName, visible)),
+    saveOperation: (operation_data) => dispatch(ViewActionCreator.saveOperationActionCreator(operation_data)),
   }
 }
 

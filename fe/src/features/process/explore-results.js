@@ -15,15 +15,15 @@ import {
   CTableHeaderCell,
   CTableRow
 } from "@coreui/react";
-import DynamicSelect from "../../shared/components/DynamicSelect";
-import {showViewActionCreator} from "../../shared/shared-functions";
+import {DynamicSelect} from 'src/common/components/DynamicSelect'
+import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
 import PropTypes from "prop-types";
 import AnalyzeRecord from "./analyze-record";
 
 const loadOptions = (
-  inputValue: string,
+  inputValue,
   // callback: (options: ColourOption[]) => void
-  callback: (options) => void,
+  callback
 ) => {
   const state = JSON.parse(localStorage.getItem('state'))['state']
   const my_queries = state['CREATE_RULE_QUERY_TREE']
@@ -149,7 +149,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    showView : (modalName, visible) => dispatch(showViewActionCreator(modalName, visible))
+    showView : (modalName, visible) => dispatch(ViewActionCreator.showViewActionCreator(modalName, visible))
   }
 }
 

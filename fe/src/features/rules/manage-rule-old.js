@@ -14,7 +14,7 @@ import {
 import {connect} from "react-redux/es/index";
 import PropTypes from "prop-types";
 import CreateCondition from "./CreateCondition";
-import showViewActionCreator from "../../shared/shared-functions";
+import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
 
 class ManageRuleOld extends React.Component {
   constructor() {
@@ -137,7 +137,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    showView : (modalName) => dispatch(showViewActionCreator(modalName, false)),
+    showView : (modalName) => dispatch(ViewActionCreator.showViewActionCreator(modalName, false)),
     setActiveKey: (activeKey) => dispatch(setActiveKeyActionCreator(activeKey)),
     loadCreateRuleParams: () => dispatch(loadCreateRuleParamsActionCreator())
   }

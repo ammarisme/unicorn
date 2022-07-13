@@ -1,5 +1,5 @@
 import React from 'react'
-import EmptyView from "./views/app-views/EmptyView";
+import EmptyView from "./template_code/views/app-views/EmptyView";
 import ClaimReview from "./features/claim-review/ClaimReview";
 import RecievedClaims from "./features/claim-review/Recieved";
 const Login = React.lazy(() => import('./features/login/Login'))

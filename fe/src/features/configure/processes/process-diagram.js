@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {showViewActionCreator} from "../../../shared/shared-functions";
+import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
 
 import ReactFlow, {
   addEdge,
@@ -106,7 +106,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    showView : (modalName, visible) => dispatch(showViewActionCreator(modalName, visible))
+    showView : (modalName, visible) => dispatch(ViewActionCreator.showViewActionCreator(modalName, visible))
   }
 }
 

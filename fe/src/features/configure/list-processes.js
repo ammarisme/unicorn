@@ -14,7 +14,7 @@ import {
   CTableHeaderCell,
   CTableRow
 } from "@coreui/react/dist/index";
-import {showViewActionCreator} from '../../shared/shared-functions'
+import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
 import ManageProcess from "./manage-process";
 
 class ListProcesses extends React.Component {
@@ -137,7 +137,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadRuleBoxes: () => dispatch(loadRuleBoxesActionCreator()),
-    showView : (modalName, visible) => dispatch(showViewActionCreator(modalName, visible))
+    showView : (modalName, visible) => dispatch(ViewActionCreator.showViewActionCreator(modalName, visible))
   }
 }
 

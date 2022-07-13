@@ -19,9 +19,8 @@ import {
 import AsyncSelect from 'react-select/async/dist/react-select.cjs.js';
 
 const loadOptions = (
-  inputValue: string,
-  // callback: (options: ColourOption[]) => void
-  callback: (options) => void,
+  inputValue,
+  callback
 ) => {
   const state = JSON.parse(localStorage.getItem('state'))['state']
   const my_queries = state['CREATE_RULE_QUERY_TREE']

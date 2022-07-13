@@ -1,12 +1,11 @@
-import createRuleStateReducer from "./create-rule-reducer";
 import initialState from '../initial-state'
-import viewReducer from "./views-reducer";
+import { ViewReducer } from "./reducers/views-reducer";
 
 const reducer = (state = initialState, {type, ...rest}) => {
   console.log('reducer : ', type)
   switch (type) {
     case 'VIEW_STATE_UPDATE':
-      return viewReducer(rest.view_name, state, rest.visible,  rest.view_state_data)
+      return ViewReducer.sub_reducer(rest.view_name, state, rest.visible,  rest.view_state_data)
     case 'SHOW-MODAL':
       state = {
         ...state,
@@ -149,7 +148,7 @@ const reducer = (state = initialState, {type, ...rest}) => {
       }
       return state
     case 'CREATE_RULE':
-      return createRuleStateReducer(rest.sub_type, state, rest.data)
+      // return createRuleStateReducer(rest.sub_type, state, rest.data)
     default:
       return state
   }

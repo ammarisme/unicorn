@@ -19,7 +19,7 @@ import {
 } from "@coreui/react/dist/index";
 import {connect} from "react-redux/es/index";
 import PropTypes from "prop-types";
-import {showViewActionCreator} from "../../shared/shared-functions";
+import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
 import {CBadge} from "@coreui/react";
 
 class AnalyzeRecord extends React.Component {
@@ -225,7 +225,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    showView : (modalName, visible) => dispatch(showViewActionCreator(modalName, visible)),
+    showView : (modalName, visible) => dispatch(ViewActionCreator.showViewActionCreator(modalName, visible)),
     setActiveKey: (activeKey) => dispatch(setActiveKeyActionCreator(activeKey)),
     loadCreateRuleParams: () => dispatch(loadCreateRuleParamsActionCreator())
   }

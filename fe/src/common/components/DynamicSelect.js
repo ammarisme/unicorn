@@ -3,7 +3,7 @@ import {connect} from "react-redux/es/index";
 import AsyncSelect from 'react-select/async/dist/react-select.cjs.js';
 import * as PropTypes from "prop-types";
 
-class DynamicSelect extends React.Component {
+export class DynamicSelect extends React.Component {
   constructor() {
     super();
   }
@@ -51,9 +51,9 @@ class DynamicSelect extends React.Component {
   }
 
   loadOptions = (
-    inputValue: string,
+    inputValue,
     // callback: (options: ColourOption[]) => void
-    callback: (options) => void,
+    callback,
   ) => {
     let url = this.props.url + "?"
     if (this.props.queryAttributes != undefined) {

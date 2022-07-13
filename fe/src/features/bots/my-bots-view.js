@@ -2,9 +2,9 @@ import React from 'react'
 import {connect} from "react-redux/es/index";
 import PropTypes from "prop-types";
 import {CCard, CCardBody,CCardTitle, CCol, CRow} from "@coreui/react/dist/index";
-import {showViewActionCreator} from '../../shared/shared-functions'
+import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
 import ManageRule from "./manage-bot";
-import {CButton, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow} from "@coreui/react";
+import {CButton, CTable, CTableBody, CTableDataCell, CTableHeaderCell, CTableRow} from "@coreui/react";
 
 class MyBotsView extends React.Component {
   constructor(props) {
@@ -125,7 +125,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadRuleBoxes: () => dispatch(loadRuleBoxesActionCreator()),
-    showView : (modalName, visible) => dispatch(showViewActionCreator(modalName, visible))
+    showView : (modalName, visible) => dispatch(ViewActionCreator.showViewActionCreator(modalName, visible))
   }
 }
 

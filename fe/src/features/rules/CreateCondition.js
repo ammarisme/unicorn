@@ -9,9 +9,9 @@ import PropTypes from "prop-types";
 import AsyncSelect from 'react-select/async/dist/react-select.cjs.js';
 
 const loadOptions = (
-  inputValue: string,
+  inputValue,
   // callback: (options: ColourOption[]) => void
-  callback: (options) => void,
+  callback
 ) => {
   const state = JSON.parse(localStorage.getItem('state'))['state']
   const my_queries = state['CREATE_RULE_QUERY_TREE']
