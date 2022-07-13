@@ -16,7 +16,7 @@ import DynamicSelect from "../../../shared/components/DynamicSelect";
 import {CBadge, CRow} from "@coreui/react";
 import {FaArrowCircleRight, FaBolt, FaSave, FaTrash} from "react-icons/fa";
 import {FaPlusCircle, FaPenSquare} from "react-icons/fa";
-import {showViewActionCreator} from "../../../shared/shared-functions";
+import {saveOperationActionCreator, showViewActionCreator} from "../../../shared/shared-functions";
 import ManageAction from "../actions/manage-action";
 
 class Operation extends React.Component {
@@ -37,9 +37,9 @@ class Operation extends React.Component {
     return (
       <>
         {
-          this.props.view_state.MANAGE_ACTION  && <ManageAction></ManageAction>
+          this.props.view_state.MANAGE_ACTION && <ManageAction></ManageAction>
         }
-          <CContainer fluid className={"operation-box"}>
+        <CContainer fluid className={"operation-box"}>
           <div className={"operations-head"}>
             <div className={"label"}>Step {1}</div>
             <div className={"input-container"}>
@@ -140,15 +140,56 @@ class Operation extends React.Component {
           </div>
           <div className={"operation-footer"}>
               <span className={"badge-button float-right"}>
-              <CBadge color="primary">Save <FaSave/></CBadge>
+              <CBadge color="primary"
+                      onClick={() => {
+                        debugger
+                        let nodes = this.props.nodes
+                        if (nodes == undefined) {
+                          nodes = [
+                            {
+                              id: "1",
+                              type: 'input',
+                              data: {
+                                label: (
+                                  <>
+                                    {this.state.operation_name}
+                                  </>
+                                ),
+                              },
+                              position: {x: 250, y: 0},
+                            }
+                          ]
+                        } else {
+                          let last_node = nodes[nodes.length - 1]
+                          nodes = [
+                            ...nodes,
+                            {
+                              id: (parseInt(last_node["id"]) + 1).toString(),
+                              data: {
+                                label: (
+                                  <>
+                                    {this.state.operation_name}
+                                  </>
+                                ),
+                              },
+                              position: {x: 250, y: 50 * (parseInt(last_node["id"]) * 3 + 1)}
+                            }
+                          ]
+                        }
+
+                        const operation_data = {
+                          nodes: nodes
+                          ,
+                          edges: []
+                        }
+                        this.props.saveOperation(operation_data)
+                      }}
+              >Save <FaSave/></CBadge>
               </span>
             <span className={"badge-button float-right"}>
               <CBadge color="danger"> Delete <FaTrash/></CBadge>
               </span>
-
-
           </div>
-
         </CContainer>
       </>
     )
@@ -158,17 +199,22 @@ class Operation extends React.Component {
 
 Operation.propTypes = {
   key: PropTypes.object,
-  showView : PropTypes.func,
-  view_state: PropTypes.object
+  showView: PropTypes.func,
+  saveOperation: PropTypes.func,
+  view_state: PropTypes.object,
+  nodes: PropTypes.array,
 }
 const mapStateToProps = (state) => {
   return {
-    view_state : state.VIEW_STATE
+    view_state: state.VIEW_STATE,
+    nodes: state.NODES
   }
 }
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    showView : (modalName, visible) => dispatch(showViewActionCreator(modalName, visible)),
+    showView: (modalName, visible) => dispatch(showViewActionCreator(modalName, visible)),
+    saveOperation: (operation_data) => dispatch(saveOperationActionCreator(operation_data)),
   }
 }
 

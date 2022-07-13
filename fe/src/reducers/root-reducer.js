@@ -142,6 +142,12 @@ const reducer = (state = initialState, {type, ...rest}) => {
         CONDITIONS: rest.CONDITIONS
       }
       return state
+    case 'CHANGE_NODES':
+      state = {
+        ...state,
+        NODES: rest.NODES
+      }
+      return state
     case 'CREATE_RULE':
       return createRuleStateReducer(rest.sub_type, state, rest.data)
     default:

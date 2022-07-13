@@ -16,14 +16,17 @@ import { nodes as initialNodes, edges as initialEdges } from './initial-elements
 
 const onInit = (reactFlowInstance) => console.log('flow loaded:', reactFlowInstance);
 
-const OverviewFlow = () => {
+
+
+const OverviewFlow = (props) => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const onConnect = (params) => setEdges((eds) => addEdge(params, eds));
+  console.log(props)
 
   return (
     <ReactFlow
-      nodes={nodes}
+      nodes={props.nodes}
       edges={edges}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
@@ -54,6 +57,11 @@ const OverviewFlow = () => {
   );
 };
 
+OverviewFlow.propTypes = {
+  nodes : PropTypes.array,
+  edges: PropTypes.array
+}
+
 class ProcessDiagram extends React.Component {
   constructor() {
     super();
@@ -72,7 +80,7 @@ class ProcessDiagram extends React.Component {
     }
     return (
           <div style={{"height" :"600px"}}>
-            <OverviewFlow></OverviewFlow>
+            <OverviewFlow nodes={this.props.nodes} edges={this.props.edges} ></OverviewFlow>
           </div>
     )
   }
@@ -82,14 +90,18 @@ class ProcessDiagram extends React.Component {
 ProcessDiagram.propTypes = {
   showView: PropTypes.func,
   activeKey: PropTypes.number,
-  view_state : PropTypes.object
+  view_state : PropTypes.object,
+  nodes : PropTypes.array,
+  edges : PropTypes.array
 }
 const mapStateToProps = (state) => {
   return {
     activeKey: state.MANAGE_RULES_ACTIVE_TAB,
     ruleParams: state.RULE_PARAMS,
     conditions: state.CONDITIONS,
-    view_state  : state.VIEW_STATE
+    view_state  : state.VIEW_STATE,
+    nodes : state.NODES,
+    edges : state.EDGES
   }
 }
 const mapDispatchToProps = (dispatch) => {
