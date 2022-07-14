@@ -15,10 +15,14 @@ import DefineSchemaComponent from "../define-schema/define-schema.component"
 import OperationsListComponent from "../operations-list/operations-list.component";
 import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
 import FinishComponent from "../finish/finish.component";
+import { ProcessModel } from 'src/domain/models/process.model';
 
 class ManageProcessComponent extends React.Component {
+  process;
+  
   constructor() {
     super();
+    this.process = new ProcessModel();
   }
 
   componentDidMount() {
@@ -74,7 +78,7 @@ class ManageProcessComponent extends React.Component {
               }
               {
                 this.props.view_state.CONDITIONS &&
-                this.props.view_state.CONDITIONS.VISIBLE && <OperationsListComponent></OperationsListComponent>
+                this.props.view_state.CONDITIONS.VISIBLE && <OperationsListComponent process={this.process} ></OperationsListComponent>
               }
               {
                 this.props.view_state.FINISH&&

@@ -9,11 +9,15 @@ import {FaPlusCircle} from "react-icons/fa";
 
 
 class OperationsListComponent extends React.Component {
+  process;
   constructor() {
     super();
   }
 
   componentDidMount() {
+
+    this.process = this.props.process
+
     this.setState({
       operations: [
       ],
@@ -41,7 +45,7 @@ class OperationsListComponent extends React.Component {
           }>
             {
               this.state.operations.map((rank, i, operation) => {
-                return (<> <OperationComponent key={operation}/>
+                return (<> <OperationComponent process={this.process} key={operation}/>
                   {
                     (i + 1 != this.state.operations.length) &&
                     <div className={"lead-to-next"}>
@@ -109,7 +113,8 @@ class OperationsListComponent extends React.Component {
 
 OperationsListComponent.propTypes = {
   switchToProView: PropTypes.func,
-  view_state: PropTypes.object
+  view_state: PropTypes.object,
+  process : PropTypes.object
 }
 
 const mapStateToProps = (state) => {

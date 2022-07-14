@@ -18,8 +18,20 @@ import {FaArrowCircleRight, FaBolt, FaSave, FaTrash} from "react-icons/fa";
 import {FaPlusCircle, FaPenSquare} from "react-icons/fa";
 import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
 import ManageAction from "../manage-action/manage-action";
+import { OperationModel } from 'src/domain/models/operation.model';
+import SmartSelectComponent from 'src/components/custom_components/smart-select/smart-select.component';
+import OperationAPI from 'src/api/operation-api';
+
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+]
 
 class OperationComponent extends React.Component {
+  operation;
+  process;
+
   constructor() {
     super();
   }
@@ -28,6 +40,8 @@ class OperationComponent extends React.Component {
     this.setState({
       actions: [{id: 0, description: "Send an email"}]
     })
+    this.process = this.props.process
+    this.operation= new OperationModel()
   }
 
   render() {
@@ -41,21 +55,24 @@ class OperationComponent extends React.Component {
         }
         <CContainer fluid className={"operation-box"}>
           <div className={"operations-head"}>
-            <div className={"label"}>Step {1}</div>
+            <div className={"label"}>Step {this.operation.sequance_number}</div>
             <div className={"input-container"}>
               <CFormInput type={"text"}
                           onChange={(event) => {
-                            this.setState({
-                              ...this.state,
-                              operation_name: event.target.value
-                            })
+                            this.operation.summary = event.target.value
                           }}
               ></CFormInput></div>
           </div>
           <div className={"operation-content"}>
             <CCol md={12}>
-              <DynamicSelect label={"Pre-requisite: "} isMulti={true} queryAttributes={[{"process_id": "1"}]}
-                             url={"http://localhost:5000/api/processes/get-pre-requisites"}></DynamicSelect>
+              <SmartSelectComponent
+               label={"Pre-requisite: "} isMulti={true}
+               APIModelCall={OperationAPI.get_prerequisites}
+               data={this.props.process}
+              ></SmartSelectComponent>
+            
+              {/* <DynamicSelect queryAttributes={[{"process_id": "1"}]}
+                             url={"http://localhost:5000/api/processes/get-pre-requisites"}></DynamicSelect> */}
             </CCol>
             <CCol md={12} className={"opearation-row"}>
               <p><a href="#">
@@ -142,47 +159,47 @@ class OperationComponent extends React.Component {
               <span className={"badge-button float-right"}>
               <CBadge color="primary"
                       onClick={() => {
-                        debugger
-                        let nodes = this.props.nodes
-                        if (nodes == undefined) {
-                          nodes = [
-                            {
-                              id: "1",
-                              type: 'input',
-                              data: {
-                                label: (
-                                  <>
-                                    {this.state.operation_name}
-                                  </>
-                                ),
-                              },
-                              position: {x: 250, y: 0},
-                            }
-                          ]
-                        } else {
-                          let last_node = nodes[nodes.length - 1]
-                          nodes = [
-                            ...nodes,
-                            {
-                              id: (parseInt(last_node["id"]) + 1).toString(),
-                              data: {
-                                label: (
-                                  <>
-                                    {this.state.operation_name}
-                                  </>
-                                ),
-                              },
-                              position: {x: 250, y: 50 * (parseInt(last_node["id"]) * 3 + 1)}
-                            }
-                          ]
-                        }
+                        // debugger
+                        // let nodes = this.props.nodes
+                        // if (nodes == undefined) {
+                        //   nodes = [
+                        //     {
+                        //       id: "1",
+                        //       type: 'input',
+                        //       data: {
+                        //         label: (
+                        //           <>
+                        //             {this.state.operation_name}
+                        //           </>
+                        //         ),
+                        //       },
+                        //       position: {x: 250, y: 0},
+                        //     }
+                        //   ]
+                        // } else {
+                        //   let last_node = nodes[nodes.length - 1]
+                        //   nodes = [
+                        //     ...nodes,
+                        //     {
+                        //       id: (parseInt(last_node["id"]) + 1).toString(),
+                        //       data: {
+                        //         label: (
+                        //           <>
+                        //             {this.state.operation_name}
+                        //           </>
+                        //         ),
+                        //       },
+                        //       position: {x: 250, y: 50 * (parseInt(last_node["id"]) * 3 + 1)}
+                        //     }
+                        //   ]
+                        // }
 
-                        const operation_data = {
-                          nodes: nodes
-                          ,
-                          edges: []
-                        }
-                        this.props.saveOperation(operation_data)
+                        // const operation_data = {
+                        //   nodes: nodes
+                        //   ,
+                        //   edges: []
+                        // }
+                        // this.props.saveOperation(operation_data)
                       }}
               >Save <FaSave/></CBadge>
               </span>
@@ -203,6 +220,7 @@ OperationComponent.propTypes = {
   saveOperation: PropTypes.func,
   view_state: PropTypes.object,
   nodes: PropTypes.array,
+  process : PropTypes.object,
 }
 const mapStateToProps = (state) => {
   return {

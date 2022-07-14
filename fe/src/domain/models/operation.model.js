@@ -2,6 +2,7 @@ import {array} from "prop-types";
 
 export class OperationModel{
  summary ;
+ sequance_number;
 
  constructor(){
    let preconditions ; // list of Preconditions

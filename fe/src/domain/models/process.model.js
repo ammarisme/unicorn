@@ -1,12 +1,11 @@
 import {array} from "prop-types";
 import { OperationModel } from "./operation.model";
 
-export class Process {
+export class ProcessModel {
   process_name;
   description;
 
   constructor() {
-    super();
     let operations; // an array of Operations
 
     this.add_operation = (operation) => {
@@ -18,6 +17,9 @@ export class Process {
     this.set_entity = (entity) => {
     }
 
+    this.get_possible_prerequisites = (operation_id) => {
+      
+    }
     
   }
 }
