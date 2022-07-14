@@ -251,3 +251,9 @@ def get_rules():
     else:
         schema = get_rules_by_pk(query)
         return jsonify(schema)
+
+
+@bp.route('/api/create-process/get-prerequisites', methods=['POST'])
+def get_prerequisites():
+    print('test')
+    return jsonify({})

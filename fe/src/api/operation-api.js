@@ -7,7 +7,7 @@ class OperationAPI extends API{
     }
       let operation_id = process_data.operation_id
       let process_status = process_data.process_status
-      super.post_data(OperationAPI.sub_url+"/get_prerequisites", 
+      super.post_data(OperationAPI.sub_url+"/get-prerequisites", 
       {
         "process_data": operation_id,
         "operation_id": process_status,

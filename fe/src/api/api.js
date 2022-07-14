@@ -1,7 +1,7 @@
 
 class API{
     static post_data(sub_url, data, fetch_callback){
-        fetch(API.base_url +""+ sub_url+ "" +  "/get_prerequisites", {
+        fetch(API.base_url +""+ sub_url+ "" , {
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
