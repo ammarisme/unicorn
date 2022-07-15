@@ -71,6 +71,7 @@ class ManageProcessComponent extends React.Component {
             </CCol>
             <CCol md={10}
             >
+              <p className='text-3xl'>test</p>
 
               {
                 this.props.view_state.DEFINE_SCHEMA &&
@@ -106,9 +107,7 @@ function setActiveKeyActionCreator(activeKey) {
 function loadCreateRuleParamsActionCreator() {
 
   return async function (dispatch, getState) {
-
     fetch('http://localhost:5000/api/rules-engine/get-schema')
-
       .then(res => res.json())
       .then(result => {
         dispatch({

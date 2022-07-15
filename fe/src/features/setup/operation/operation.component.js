@@ -1,5 +1,5 @@
 import React from 'react'
-import {connect} from "react-redux/es/index";
+import { connect } from "react-redux/es/index";
 import PropTypes from "prop-types";
 import {
   CCol,
@@ -12,10 +12,10 @@ import {
   CTableHeaderCell,
   CTableRow
 } from "@coreui/react/dist/index";
-import {DynamicSelect} from 'src/components/custom_components/DynamicSelect'
-import {CBadge, CRow} from "@coreui/react";
-import {FaArrowCircleRight, FaBolt, FaSave, FaTrash} from "react-icons/fa";
-import {FaPlusCircle, FaPenSquare} from "react-icons/fa";
+import { DynamicSelect } from 'src/components/custom_components/DynamicSelect'
+import { CBadge, CRow } from "@coreui/react";
+import { FaArrowCircleRight, FaBolt, FaSave, FaTrash } from "react-icons/fa";
+import { FaPlusCircle, FaPenSquare } from "react-icons/fa";
 import { ViewActionCreator } from 'src/redux/action_creators/view-action-creator';
 import ManageAction from "../manage-action/manage-action";
 import { OperationModel } from 'src/domain/models/operation.model';
@@ -29,25 +29,32 @@ const options = [
 ]
 
 class OperationComponent extends React.Component {
-  operation;
-  process;
+  operation = {
+    sequence_number: undefined,
+    summary: undefined
+  }
 
   constructor() {
     super();
+
   }
 
+
   componentDidMount() {
+    this.operation.sequence_number = 1
+    console.log('dfsfsf')
     this.setState({
-      actions: [{id: 0, description: "Send an email"}]
+      actions: [{ id: 0, description: "Send an email" }],
+      operation: this.operation
     })
-    this.process = this.props.process
-    this.operation= new OperationModel()
+
   }
 
   render() {
-    if (this.state == null) {
+    if (this.state == null || this.state.operation == undefined) {
       return <></>
     }
+    console.log(this.state.operation.sequance_number)
     return (
       <>
         {
@@ -55,36 +62,43 @@ class OperationComponent extends React.Component {
         }
         <CContainer fluid className={"operation-box"}>
           <div className={"operations-head"}>
-            <div className={"label"}>Step {this.operation.sequance_number}</div>
+            <div className={"label"}>Step {this.state.operation.sequance_number}</div>
             <div className={"input-container"}>
               <CFormInput type={"text"}
-                          onChange={(event) => {
-                            this.operation.summary = event.target.value
-                          }}
+                onChange={(event) => {
+                  this.setState({
+                    ...this.state,
+                    summary: event.target.value
+                  })
+                }}
               ></CFormInput></div>
           </div>
           <div className={"operation-content"}>
             <CCol md={12}>
               <SmartSelectComponent
-               label={"Pre-requisite: "} isMulti={true}
-               APIModelCall={OperationAPI.get_prerequisites}
-               data={this.props.process}
+                label={"Pre-requisite: "} isMulti={true}
+                APIModelCall={OperationAPI.get_prerequisites}
+                data={
+                  {
+                    "process_status": this.props.process.to_object(),
+                    "sequance_number": this.state.operation.sequence_number,
+                  }}
               ></SmartSelectComponent>
-            
+
               {/* <DynamicSelect queryAttributes={[{"process_id": "1"}]}
                              url={"http://localhost:5000/api/processes/get-pre-requisites"}></DynamicSelect> */}
             </CCol>
             <CCol md={12} className={"opearation-row"}>
               <p><a href="#">
                 <CBadge color="dark"
-                        onClick={(event) => {
-                          event.preventDefault()
-                          this.setState({
-                            ...this.state,
-                            add_condition: !this.state.add_condition
-                          })
-                        }}
-                ><FaArrowCircleRight/>
+                  onClick={(event) => {
+                    event.preventDefault()
+                    this.setState({
+                      ...this.state,
+                      add_condition: !this.state.add_condition
+                    })
+                  }}
+                ><FaArrowCircleRight />
                   {
                     this.state.add_condition && " Remove condition "
                   }
@@ -93,29 +107,29 @@ class OperationComponent extends React.Component {
                   }
                 </CBadge></a> <span>  or  </span>
                 <a href="#"
-                   onClick={(event) => {
-                     event.preventDefault()
-                     this.setState({
-                       ...this.state,
-                       add_actions: !this.state.add_actions
-                     })
-                   }}
-                ><CBadge color="dark"><FaBolt/>
-                  {
-                    this.state.add_actions && " Remove all Actions "
-                  }
-                  {
-                    !this.state.add_actions && " Add some Actions "
-                  }
-                </CBadge></a></p>
+                  onClick={(event) => {
+                    event.preventDefault()
+                    this.setState({
+                      ...this.state,
+                      add_actions: !this.state.add_actions
+                    })
+                  }}
+                ><CBadge color="dark"><FaBolt />
+                    {
+                      this.state.add_actions && " Remove all Actions "
+                    }
+                    {
+                      !this.state.add_actions && " Add some Actions "
+                    }
+                  </CBadge></a></p>
             </CCol>
             {
               this.state.add_condition && <CCol md={12} className={"operation-row"}>
                 <DynamicSelect label={"Condition: "} isMulti={true}
-                               url={"http://localhost:5000/api/flags"}></DynamicSelect>
+                  url={"http://localhost:5000/api/flags"}></DynamicSelect>
               </CCol>
             }
-            <br/>
+            <br />
             {
               this.state.add_actions &&
               <CCol md={12} className={"operation-row"}>
@@ -132,7 +146,7 @@ class OperationComponent extends React.Component {
                         return <> <CTableRow>
                           <CTableDataCell>{action.description}</CTableDataCell>
                           <CTableDataCell>
-                            <span className={"badge-button"}><CBadge color="dark">Edit <FaPenSquare/></CBadge></span>
+                            <span className={"badge-button"}><CBadge color="dark">Edit <FaPenSquare /></CBadge></span>
                           </CTableDataCell>
                         </CTableRow>
                         </>
@@ -142,11 +156,11 @@ class OperationComponent extends React.Component {
                     <CTableRow>
                       <CTableDataCell colSpan={2}>
                         <span className={"badge-button float-left"}
-                              onClick={() => {
-                                this.props.showView("MANAGE_ACTION", true)
-                              }}
+                          onClick={() => {
+                            this.props.showView("MANAGE_ACTION", true)
+                          }}
                         >
-                          <CBadge color="dark">Add an Action <FaPlusCircle/></CBadge></span>
+                          <CBadge color="dark">Add an Action <FaPlusCircle /></CBadge></span>
                       </CTableDataCell>
                     </CTableRow>
                   </CTableBody>
@@ -156,56 +170,55 @@ class OperationComponent extends React.Component {
             }
           </div>
           <div className={"operation-footer"}>
-              <span className={"badge-button float-right"}>
-              <CBadge color="primary"
-                      onClick={() => {
-                        // debugger
-                        // let nodes = this.props.nodes
-                        // if (nodes == undefined) {
-                        //   nodes = [
-                        //     {
-                        //       id: "1",
-                        //       type: 'input',
-                        //       data: {
-                        //         label: (
-                        //           <>
-                        //             {this.state.operation_name}
-                        //           </>
-                        //         ),
-                        //       },
-                        //       position: {x: 250, y: 0},
-                        //     }
-                        //   ]
-                        // } else {
-                        //   let last_node = nodes[nodes.length - 1]
-                        //   nodes = [
-                        //     ...nodes,
-                        //     {
-                        //       id: (parseInt(last_node["id"]) + 1).toString(),
-                        //       data: {
-                        //         label: (
-                        //           <>
-                        //             {this.state.operation_name}
-                        //           </>
-                        //         ),
-                        //       },
-                        //       position: {x: 250, y: 50 * (parseInt(last_node["id"]) * 3 + 1)}
-                        //     }
-                        //   ]
-                        // }
-
-                        // const operation_data = {
-                        //   nodes: nodes
-                        //   ,
-                        //   edges: []
-                        // }
-                        // this.props.saveOperation(operation_data)
-                      }}
-              >Save <FaSave/></CBadge>
-              </span>
             <span className={"badge-button float-right"}>
-              <CBadge color="danger"> Delete <FaTrash/></CBadge>
-              </span>
+              <CBadge color="primary"
+                onClick={() => {
+                  // let nodes = this.props.nodes
+                  // if (nodes == undefined) {
+                  //   nodes = [
+                  //     {
+                  //       id: "1",
+                  //       type: 'input',
+                  //       data: {
+                  //         label: (
+                  //           <>
+                  //             {this.state.operation_name}
+                  //           </>
+                  //         ),
+                  //       },
+                  //       position: {x: 250, y: 0},
+                  //     }
+                  //   ]
+                  // } else {
+                  //   let last_node = nodes[nodes.length - 1]
+                  //   nodes = [
+                  //     ...nodes,
+                  //     {
+                  //       id: (parseInt(last_node["id"]) + 1).toString(),
+                  //       data: {
+                  //         label: (
+                  //           <>
+                  //             {this.state.operation_name}
+                  //           </>
+                  //         ),
+                  //       },
+                  //       position: {x: 250, y: 50 * (parseInt(last_node["id"]) * 3 + 1)}
+                  //     }
+                  //   ]
+                  // }
+
+                  // const operation_data = {
+                  //   nodes: nodes
+                  //   ,
+                  //   edges: []
+                  // }
+                  // this.props.saveOperation(operation_data)
+                }}
+              >Save <FaSave /></CBadge>
+            </span>
+            <span className={"badge-button float-right"}>
+              <CBadge color="danger"> Delete <FaTrash /></CBadge>
+            </span>
           </div>
         </CContainer>
       </>
@@ -220,7 +233,7 @@ OperationComponent.propTypes = {
   saveOperation: PropTypes.func,
   view_state: PropTypes.object,
   nodes: PropTypes.array,
-  process : PropTypes.object,
+  process: PropTypes.object,
 }
 const mapStateToProps = (state) => {
   return {

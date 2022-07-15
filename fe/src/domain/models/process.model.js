@@ -20,6 +20,14 @@ export class ProcessModel {
     this.get_possible_prerequisites = (operation_id) => {
       
     }
-    
+  
+    this.to_object =()=> {
+      return {
+        "process_name" : this.process_name,
+        "description" : this.description
+      }
+    }
   }
+
+
 }

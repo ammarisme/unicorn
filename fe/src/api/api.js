@@ -7,7 +7,7 @@ class API{
               'Content-Type': 'application/json'
             },
             method: "POST",
-            body: data
+            body: JSON.stringify(data)
           })
             .then(res => res.json())
             .then((res) => {
