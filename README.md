@@ -1,5 +1,5 @@
 
-# Project Summary
+# Python rules engine
 
 This project consists of a frontend (fe directory) built with React and a backend (be directory) developed using Python and Flask.
 
@@ -7,7 +7,7 @@ This project consists of a frontend (fe directory) built with React and a backen
 
 ## Project Goal
 
-The goal of this project is to create a secure, scalable, and user-friendly web application that facilitates seamless user authentication and efficient data management. By leveraging OAuth 2.0 for secure authentication and providing a comprehensive API for frontend-backend communication, the project aims to deliver a robust solution for handling sensitive user data and complex business processes.
+The goal of this project is to create a secure, scalable, and user-friendly web application that facilitates seamless user authentication, efficient data management, and dynamic rule engine configuration. By leveraging OAuth 2.0 for secure authentication and providing a comprehensive API for frontend-backend communication, the project aims to deliver a robust solution for handling sensitive user data and complex business processes. The rules engine, built on top of Python, can be configured through the React-based frontend to enable flexible and powerful business logic management.
 
 ---
 
